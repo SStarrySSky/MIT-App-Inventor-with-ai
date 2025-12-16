@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "AI Block Injector for App Inventor",
+  "version": "0.1.0",
+  "description": "Calls an LLM API and injects generated Blockly/App Inventor blocks directly into the workspace.",
+  "permissions": [
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+  "action": {
+    "default_title": "AI Block Injector"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://ai2.appinventor.mit.edu/*",
+        "https://code.appinventor.mit.edu/*",
+        "https://ai2-test.appinventor.mit.edu/*",
+        "https://appinventor.mit.edu/*",
+        "http://localhost/*"
+      ],
+      "js": [
+        "content-script.js"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}
